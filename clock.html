@@ -5,45 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Rubik+Bubbles&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap" rel="stylesheet">
 
 
 
 
     <style>
-        body {}
-
-        #clock {
-            width: 300px;
-            height: 300px;
-            background: gray;
-            border-radius: 50%;
+        #box {
+            width: 1280px;
+            height: 900px;
+            background: url(./img/BG_day.jpg) no-repeat top/contain;
             position: relative;
             margin: auto;
         }
 
+        #clock {
+            width: 400px;
+            height: 400px;
+            background: url(./img/Time.png) no-repeat;
+            /* background: gray; */
+            border-radius: 50%;
+            position: relative;
+            top: 48%;
+            left: 51.5%;
+            transform: translate(-50%, -50%);
+            /* margin: auto; */
+        }
+
+
         #hour {
-            width: 20%;
-            height: 10px;
-            background: skyblue;
+            width: 400px;
+            height: 400px;
+            background: url(./img/時針.png);
+            filter: contrast(3);
             position: absolute;
-            left: 30%;
-            /* calc 不同單位的數值可做加減乘除，計算符號的左右要空白 */
-            top: calc(50% - 5px);
-            border-radius: 5px;
-            transform-origin: right center;
-            z-index: 1;
+            left: 0;
+            top: 0;
+            transform: translate(-50%, -50%);
+            /* transform-origin: right center; */
+            /* z-index: 1; */
         }
 
         #minute {
-            width: 40%;
-            height: 10px;
-            background: pink;
+            width: 400px;
+            height: 400px;
+            background: url(./img/分針.png);
+            filter: contrast(3);
             position: absolute;
-            left: 10%;
-            top: calc(50% - 5px);
-            border-radius: 5px;
-            transform-origin: right center;
+            left: 0;
+            top: 0;
+            transform: translate(-50%, -50%);
         }
 
         #second {
@@ -60,10 +71,19 @@
         p {
             text-align: center;
             letter-spacing: 5px;
-            font-size: 50px;
-            font-family: "Rubik Bubbles", system-ui;
+            font-size: 55px;
+            font-family: "Emilys Candy", serif;
             font-weight: 400;
             font-style: normal;
+            /* 文字遮罩（利用文字當遮擋的形狀，文字顏色設為透明，背景顏色用漸層） */
+            background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+            -webkit-background-clip: text;
+            color: transparent;
+            /* 設定位置 */
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translate(-50%, 0);
         }
     </style>
 
@@ -73,12 +93,15 @@
 
 <body>
 
-    <div id="clock">
-        <div id="hour"></div>
-        <div id="minute"></div>
-        <div id="second"></div>
+    <div id="box">
+        <div id="clock">
+            <div id="hour"></div>
+            <div id="minute"></div>
+            <div id="second"></div>
+        </div>
+        <p id="text">00:00:00</p>
     </div>
-    <p id="text">00:00:00</p>
+
 
 
     <script>
@@ -92,8 +115,8 @@
             const hour = date.getHours()
             const minute = date.getMinutes()
             const second = date.getSeconds()
-            elHour.style.transform = `rotate(${hour * 30 + 90}deg)`
-            elMinute.style.transform = `rotate(${minute * 6 + 90}deg)`
+            elHour.style.transform = `rotate(${hour * 30 + 20}deg)`
+            elMinute.style.transform = `rotate(${minute * 6 + 6}deg)`
             elSecond.style.transform = `rotate(${second * 6 + 90}deg)`
 
             // .padStart(向前補至幾位數, 要用什麼'文字'填滿) 在【前面】加上要補的文字
@@ -103,6 +126,8 @@
 
         setInterval(clock, 1000)
         clock()
+
+
 
 
 
